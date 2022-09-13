@@ -33,17 +33,51 @@ function validate(){
   const email = document.getElementById("email").value;
   const quantity = document.getElementById("quantity").value;
   const cgu = document.getElementById("checkbox1").checked;
-  const radio = document.querySelector('input[name="location"]:checked');
-  
-  if(first.length < 2) return false;
-  if(last.length < 2) return false;
-  var re = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
-  if(!re.test(email)) return false;
-  if(isNaN(quantity) || quantity < 0) return false;
-  if(!radio) return false;
-  if(!cgu) return false;
+  const location = document.querySelector('input[name="location"]:checked');
 
-  return true;
+  var valid = true;
+  
+  if(first.length < 2){
+    showError("first");
+    valid = false;
+  }
+
+  if(last.length < 2){
+    showError("last");
+    valid = false;
+  }
+
+  var re = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
+  if(!re.test(email)){
+    showError("email");
+    valid = false;
+  }
+
+  if(isNaN(quantity) || quantity == "" || quantity < 0){
+    showError("quantity");
+    valid = false;
+  }
+
+  if(!location){
+    showError("location");
+    valid = false;
+  }
+
+  if(!cgu){
+    showError("cgu");
+    valid = false;
+  }
+
+  return valid;
+}
+
+function showError(error){
+  document.getElementById("error-" + error).style.display = "block";
+  const field = document.querySelector('input[name="' + error + '"]');
+  if(field){
+    field.style.border = "1px solid red";
+  }
+  
 }
 
 // function debugMode(){
