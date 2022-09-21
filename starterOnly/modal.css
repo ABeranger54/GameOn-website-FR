@@ -539,10 +539,21 @@ footer {
 #validationMessage{
   position: fixed;
   background-color: lightgreen;
-  display: block;
+  display: none;
   left: 0;
   width: 100%;
   height: 50px;
   line-height: 50px;
   text-align: center;
+}
+
+#validationMessage p{
+  padding: 0;
+  display: inline-block;
+}
+
+#validationMessageClose{
+  float: right;
+  margin-right: 15px;
+  cursor: pointer;
 }

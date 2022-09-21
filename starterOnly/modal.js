@@ -12,6 +12,7 @@ const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 // const formData = document.querySelectorAll(".formData");
 const modalCloseButton = document.querySelector(".close");
+const validationClose = document.getElementById("validationMessage");
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -27,7 +28,15 @@ function closeModal(){
 }
 
 function closeValidationMessage(){
-  
+  validationClose.style.display = "none";
+}
+
+function checkValidation(){
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  if(urlParams.get("first") != null){
+    validationClose.style.display = "block";
+  }
 }
 
 function validate(){
