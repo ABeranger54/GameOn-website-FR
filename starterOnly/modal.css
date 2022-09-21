@@ -535,3 +535,14 @@ footer {
   color: red;
   display: none;
 }
+
+#validationMessage{
+  position: fixed;
+  background-color: lightgreen;
+  display: block;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+}

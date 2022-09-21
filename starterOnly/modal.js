@@ -26,6 +26,10 @@ function closeModal(){
   modalbg.style.display = "none";
 }
 
+function closeValidationMessage(){
+  
+}
+
 function validate(){
   const first = document.getElementById("first").value;
   const last = document.getElementById("last").value;
