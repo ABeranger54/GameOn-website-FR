@@ -31,18 +31,19 @@ function closeValidationMessage(){
   validationClose.style.display = "none";
 }
 
-function checkValidation(){
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  if(urlParams.get("first") != null){
-    validationClose.style.display = "block";
+function clearField(id){
+  const elem = document.getElementById(id);
+  if(elem){
+    elem.value = "";
   }
+  
 }
 
 function validate(){
   const first = document.getElementById("first").value;
   const last = document.getElementById("last").value;
   const email = document.getElementById("email").value;
+  const birthdate = new Date(document.getElementById("birthdate").value);
   var emailRegex = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
   const quantity = document.getElementById("quantity").value;
 
@@ -50,6 +51,7 @@ function validate(){
     "first" : first.length >= 2,
     "last" : last.length >= 2,
     "email" : emailRegex.test(email),
+    "birthdate" : birthdate instanceof Date && !isNaN(birthdate),
     "quantity" : !isNaN(quantity) && quantity != "" && quantity >= 0,
     "location" : document.querySelector('input[name="location"]:checked'),
     "cgu" : document.getElementById("checkbox1").checked
@@ -64,7 +66,15 @@ function validate(){
     }
   }
 
-  return valid;
+  if(valid){
+    for(var key in fieldConditions){
+      clearField(key);
+    }
+      closeModal();
+      validationClose.style.display = "block";
+  }
+
+  return false;
 }
 
 function showError(valid, error){

@@ -11,7 +11,7 @@
       rel="stylesheet"
     />
   </head>
-  <body onload="checkValidation()">
+  <body>
     <div id="validationMessage">
       <p>Nous avons bien reçu vos données.</p>
       <a id="validationMessageClose" onclick="closeValidationMessage()">X</a>
@@ -79,6 +79,7 @@
               <div class="formData">
                 <label for="birthdate">Date de naissance</label>
                 <input class="text-control" type="date" id="birthdate" name="birthdate" />
+                <p class="error" id="error-birthdate">Veuillez saisir une date de naissance valide.</p>
               </div>
               <div class="formData">
                 <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label>
