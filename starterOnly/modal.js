@@ -46,16 +46,16 @@ function validate(){
   const first = document.getElementById("first").value;
   const last = document.getElementById("last").value;
   const email = document.getElementById("email").value;
+  const emailRegexp = new RegExp(/^[a-zA-Z0-9][\-_\.\+\!\#\$\%\&\'\*\/\=\?\^\`\{\|]{0,1}([a-zA-Z0-9][\-_\.\+\!\#\$\%\&\'\*\/\=\?\^\`\{\|]{0,1})*[a-zA-Z0-9]@[a-zA-Z0-9][-\.]{0,1}([a-zA-Z][-\.]{0,1})*[a-zA-Z0-9]\.[a-zA-Z0-9]{1,}([\.\-]{0,1}[a-zA-Z]){0,}[a-zA-Z0-9]{0,}$/i);
   const birthdate = new Date(document.getElementById("birthdate").value);
-  var emailRegex = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
   const quantity = document.getElementById("quantity").value;
 
   // associative list : key is field id, value is validation condition
   var fieldConditions = {
     "first" : first.length >= 2,
     "last" : last.length >= 2,
-    "email" : emailRegex.test(email),
-    "birthdate" : birthdate instanceof Date && !isNaN(birthdate),
+    "email" : emailRegexp.test(email),
+    "birthdate" : birthdate instanceof Date && !isNaN(birthdate) && birthdate < new Date(),
     "quantity" : !isNaN(quantity) && quantity != "" && quantity >= 0,
     "location" : document.querySelector('input[name="location"]:checked'),
     "cgu" : document.getElementById("checkbox1").checked
